@@ -39,7 +39,7 @@ const getNumberFromString = (text) => {
 
   let result = '';
   for (let i = 0; i < text.length; i++) {
-    if (!Number.isNaN(parseInt(text[i]))) {
+    if (!Number.isNaN(parseInt(text[i], 10))) {
       result += text[i];
     }
   }
