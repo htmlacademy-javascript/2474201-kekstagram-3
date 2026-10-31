@@ -20,11 +20,17 @@ const renderPhotoThumbnail = function (photo) {
 };
 
 
-const renderPhotoThumbnailList = function (photos) {
+const resetGallery = function () {
+  photoThumbnailContainerElement.querySelectorAll('.picture').forEach((el) => el.remove());
+};
+
+
+const renderGallery = function (photos) {
+  resetGallery();
   const fragment = document.createDocumentFragment();
   photos.forEach((photo) => fragment.append(renderPhotoThumbnail(photo)));
   photoThumbnailContainerElement.append(fragment);
 };
 
 
-export { renderPhotoThumbnailList };
+export { renderGallery};

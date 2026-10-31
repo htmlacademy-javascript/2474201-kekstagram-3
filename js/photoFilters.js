@@ -1,4 +1,5 @@
 import { renderGallery } from './photoThumbnails.js';
+import { debounce } from './utils.js';
 
 
 const Filter = {
@@ -9,6 +10,7 @@ const Filter = {
 
 const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 const RANDOM_PHOTOS_COUNT = 10;
+const RERENDER_DELAY = 500;
 
 let currentFilter = Filter.DEFAULT;
 let photos = [];
@@ -40,6 +42,9 @@ const getFilteredPhotos = function () {
 };
 
 
+const rerenderGallery = debounce((filtered) => renderGallery(filtered), RERENDER_DELAY);
+
+
 filtersFormElement.addEventListener('click', (evt) => {
   const buttonClickElement = evt.target.closest('.img-filters__button');
   const buttonActiveElement = filtersFormElement.querySelector(`.${ACTIVE_BUTTON_CLASS}`);
@@ -53,7 +58,7 @@ filtersFormElement.addEventListener('click', (evt) => {
   currentFilter = buttonClickElement.id;
 
   const filteredPhotos = getFilteredPhotos();
-  renderGallery(filteredPhotos);
+  rerenderGallery(filteredPhotos);
 });
 
 
