@@ -23,7 +23,7 @@ scaleBiggerElement.addEventListener('click', () => changeScale(1));
 
 const resetScale = function () {
   currentScaleCount = SCALE_COUNT.MAX;
-  changeScale();
+  changeScale(1);
 };
 
 
