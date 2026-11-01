@@ -6,6 +6,7 @@ const uploadFormElement = document.querySelector('.img-upload__form');
 const uploadFormInputElement = uploadFormElement.querySelector('.img-upload__input');
 const uploadFormPreviewImageElement = uploadFormElement.querySelector('.img-upload__preview img');
 const defaultPreviewSrc = uploadFormPreviewImageElement.getAttribute('src');
+const effectsPreviewElements = uploadFormElement.querySelectorAll('.effects__preview');
 
 
 const createFile = function () {
@@ -19,6 +20,10 @@ const createFile = function () {
     }
     previewUrl = URL.createObjectURL(file);
     uploadFormPreviewImageElement.src = previewUrl;
+
+    effectsPreviewElements.forEach((effectsPreviewElement) => {
+      effectsPreviewElement.style.backgroundImage = `url(${previewUrl})`;
+    });
   }
 };
 
@@ -29,6 +34,10 @@ const resetFile = () => {
     previewUrl = null;
   }
   uploadFormPreviewImageElement.src = defaultPreviewSrc;
+
+  effectsPreviewElements.forEach((effectsPreviewElement) => {
+    effectsPreviewElement.style.backgroundImage = '';
+  });
 };
 
 
