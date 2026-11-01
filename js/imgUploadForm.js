@@ -3,6 +3,7 @@ import { isEscapeKey } from './utils.js';
 import { isValid, resetValidation } from './imgUploadValidation.js';
 import { resetScale } from './imgUploadScale.js';
 import { resetFilter } from './imgUploadEffects.js';
+import { createFile, resetFile } from './imgUploadPreview.js';
 
 
 const SubmitButtonText = {
@@ -37,6 +38,7 @@ const closePopup = function () {
   resetValidation();
   resetScale();
   resetFilter();
+  resetFile();
 };
 
 
@@ -50,6 +52,7 @@ function onDocumentKeydown(evt) {
 
 uploadFormInputElement.addEventListener('change', () => {
   openPopup();
+  createFile();
 });
 
 
